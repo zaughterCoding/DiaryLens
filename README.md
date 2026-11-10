@@ -2,11 +2,11 @@
   <img src="src/assets/logo.svg" width="96" height="96" alt="DiaryLens">
 </p>
 
-<h1 align="center">DiaryLens 日记透镜</h1>
+<h1 align="center">🔍 DiaryLens 日记透镜</h1>
 
 <p align="center">
   把打卡 / 成长日记变成一条看得见的时间轴<br>
-  <b>中文</b> · <a href="README.en.md">English</a>
+  <b>中文</b> · <a href="README.en.md">English</a> · <a href="https://zaughtercoding.github.io/DiaryLens/">在线体验</a>
 </p>
 
 ---
@@ -26,6 +26,7 @@
 - [日记格式](#日记格式)
 - [数据结构](#数据结构)
 - [代码结构](#代码结构)
+- [本地运行](#本地运行)
 - [后续计划](#后续计划)
 
 ## 功能一览
@@ -46,19 +47,13 @@
 
 ## 快速开始
 
-### 直接使用
+### 在线使用
 
-`npm run build` 打包后只有一个 `dist/index.html`（约 110 KB），可以双击打开，也可以部署到任何静态托管服务。仓库自带 GitHub Pages 工作流，推送到 `main` 分支就会自动部署。
+直接打开 **https://zaughtercoding.github.io/DiaryLens/** 即可。这只是一个静态网页：你的日记和 API Key 都保存在你自己的浏览器里，不会上传到这个网站。
 
-### 本地开发
+### 自己运行
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # 输出单文件 dist/index.html
-```
-
-需要 Node.js 18+。
+不想依赖在线网站，可以把项目 clone 到本地自己运行，见下文[本地运行](#本地运行)。
 
 ### 使用流程
 
@@ -256,6 +251,49 @@ src/
 ```
 
 技术栈：TypeScript + Vite，没有使用 UI 框架和图表库，图表都是手写 SVG。
+
+## 本地运行
+
+如果你不想使用在线网站，可以 clone 本项目，在自己电脑上运行。本地运行和在线版功能完全一样，所有请求都由你的浏览器直接发给你配置的模型服务商。
+
+### 准备
+
+- [Node.js](https://nodejs.org/) 18 或更高版本（自带 npm）
+- Git
+
+### 方式一：开发模式（推荐）
+
+```bash
+git clone https://github.com/zaughterCoding/DiaryLens.git
+cd DiaryLens
+npm install
+npm run dev
+```
+
+浏览器打开终端里显示的地址（默认 http://localhost:5173）。修改源码后页面会自动刷新。
+
+### 方式二：打包成单个 HTML，离线使用
+
+```bash
+git clone https://github.com/zaughterCoding/DiaryLens.git
+cd DiaryLens
+npm install
+npm run build
+```
+
+打包产物是 `dist/index.html`，所有代码和样式都内联在这个文件里。之后不再需要 Node.js，也不需要服务器：
+
+- 直接双击 `dist/index.html` 用浏览器打开；
+- 或者复制到任意位置、U 盘、其他电脑上使用。
+
+想用本地服务器预览打包结果，可以运行 `npm run preview`（默认 http://localhost:4173）。
+
+### 注意事项
+
+- **数据按网址隔离**：浏览器按网址（来源）分别保存数据，`localhost:5173`、`localhost:4173`、双击打开的本地文件、在线网站之间互不共享。要在它们之间迁移，请用「更多 → 导出项目 JSON」再「导入项目 JSON」。
+- **双击打开的文件**：Chrome / Edge 可以正常保存数据；个别浏览器对本地文件（`file://`）的存储有限制，遇到时请改用 `npm run preview`。
+- **离线**：页面本身可以离线打开；分析日记和生成周报需要能访问你配置的模型接口（演示模式除外）。
+- **自己部署**：fork 本仓库后，在 Settings → Pages 把 Source 设为 GitHub Actions，推送到 `main` 分支即可自动部署到你自己的 GitHub Pages。也可以把 `dist/index.html` 放到任意静态托管服务上。
 
 ## 后续计划
 

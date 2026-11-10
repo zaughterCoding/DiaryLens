@@ -2,11 +2,11 @@
   <img src="src/assets/logo.svg" width="96" height="96" alt="DiaryLens">
 </p>
 
-<h1 align="center">DiaryLens</h1>
+<h1 align="center">🔍 DiaryLens</h1>
 
 <p align="center">
   Turn your check-in / growth diary into a timeline you can actually see<br>
-  <a href="README.md">中文</a> · <b>English</b>
+  <a href="README.md">中文</a> · <b>English</b> · <a href="https://zaughtercoding.github.io/DiaryLens/">Live demo</a>
 </p>
 
 ---
@@ -28,6 +28,7 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 - [Diary format](#diary-format)
 - [Data model](#data-model)
 - [Project layout](#project-layout)
+- [Run it locally](#run-it-locally)
 - [Roadmap](#roadmap)
 
 ## Features
@@ -48,19 +49,13 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 
 ## Quick start
 
-### Use it directly
+### Use it online
 
-`npm run build` produces a single `dist/index.html` (~110 KB). Open it by double-clicking, or host it on any static server. A GitHub Pages workflow is included and deploys on every push to `main`.
+Open **https://zaughtercoding.github.io/DiaryLens/**. It is just a static page: your diary and API key stay in your own browser and are never uploaded to this site.
 
-### Develop locally
+### Self-host
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # single-file dist/index.html
-```
-
-Requires Node.js 18+.
+Prefer not to depend on the hosted site? Clone the project and run it yourself; see [Run it locally](#run-it-locally).
 
 ### Workflow
 
@@ -256,6 +251,49 @@ src/
 ```
 
 Built with TypeScript and Vite. No UI framework and no chart library; every chart is hand-written SVG.
+
+## Run it locally
+
+If you'd rather not use the hosted site, clone the project and run it on your own machine. It works exactly like the online version, and every request still goes straight from your browser to the model provider you configure.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18 or later (includes npm)
+- Git
+
+### Option 1: dev server (recommended)
+
+```bash
+git clone https://github.com/zaughterCoding/DiaryLens.git
+cd DiaryLens
+npm install
+npm run dev
+```
+
+Open the URL printed in the terminal (http://localhost:5173 by default). The page reloads automatically when you edit the source.
+
+### Option 2: build a single HTML file for offline use
+
+```bash
+git clone https://github.com/zaughterCoding/DiaryLens.git
+cd DiaryLens
+npm install
+npm run build
+```
+
+The result is `dist/index.html`, with all code and styles inlined. From then on you need neither Node.js nor a server:
+
+- double-click `dist/index.html` to open it in your browser;
+- or copy it anywhere (a USB stick, another computer) and use it there.
+
+To preview the build on a local server, run `npm run preview` (http://localhost:4173 by default).
+
+### Notes
+
+- **Data is per URL**: browsers store data separately for each origin, so `localhost:5173`, `localhost:4173`, a double-clicked local file and the hosted site don't share data. To move a project between them, use 更多 → 导出项目 JSON (More → Export project JSON) and then 导入项目 JSON (Import project JSON).
+- **Opening the file directly**: Chrome and Edge save data fine from a local file. Some browsers restrict storage for `file://` pages; if yours does, use `npm run preview` instead.
+- **Offline**: the page itself opens offline; analyzing entries and generating weekly reviews need access to your model endpoint (except in demo mode).
+- **Deploy your own copy**: fork the repo, set Settings → Pages → Source to GitHub Actions, and every push to `main` deploys to your own GitHub Pages. Alternatively, put `dist/index.html` on any static host.
 
 ## Roadmap
 
