@@ -2,7 +2,7 @@
   <img src="src/assets/logo.svg" width="96" height="96" alt="DiaryLens">
 </p>
 
-<h1 align="center">🔍 DiaryLens</h1>
+<h1 align="center">DiaryLens</h1>
 
 <p align="center">
   Turn your check-in / growth diary into a timeline you can actually see<br>
@@ -35,20 +35,20 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 
 <p align="center"><img src="docs/screenshots/timeline.jpg" alt="Timeline overview"></p>
 
-## Contents
+## 📑 Contents
 
-- [Features](#features)
-- [Tech stack](#tech-stack)
-- [Quick start](#quick-start)
-- [How it works](#how-it-works)
-- [Models & privacy](#models--privacy)
-- [Diary format](#diary-format)
-- [Data model](#data-model)
-- [Project layout](#project-layout)
-- [Run it locally](#run-it-locally)
-- [Roadmap](#roadmap)
+- [Features](#-features)
+- [Tech stack](#-tech-stack)
+- [Quick start](#-quick-start)
+- [How it works](#-how-it-works)
+- [Models & privacy](#-models--privacy)
+- [Diary format](#-diary-format)
+- [Data model](#-data-model)
+- [Project layout](#-project-layout)
+- [Run it locally](#-run-it-locally)
+- [Roadmap](#-roadmap)
 
-## Features
+## ✨ Features
 
 | Feature | What it does |
 |---|---|
@@ -64,7 +64,7 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 | 💾 Local storage & export | Autosaved in the browser; JSON backup; offline read-only HTML snapshot for sharing |
 | 🧪 Demo mode | Try the UI without an API key, using keyword rules in place of a model |
 
-## Tech stack
+## 🧰 Tech stack
 
 | Layer | Choice | Notes |
 |---|---|---|
@@ -77,7 +77,7 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 
 **Zero runtime dependencies**: the bundle contains only this project's own code, with no third-party runtime libraries.
 
-## Quick start
+## 🚀 Quick start
 
 ### Use it online
 
@@ -85,7 +85,7 @@ Open **https://zaughtercoding.github.io/DiaryLens/**. It is just a static page: 
 
 ### Self-host
 
-Prefer not to depend on the hosted site? Clone the project and run it yourself; see [Run it locally](#run-it-locally).
+Prefer not to depend on the hosted site? Clone the project and run it yourself; see [Run it locally](#-run-it-locally).
 
 ### Workflow
 
@@ -96,7 +96,7 @@ Prefer not to depend on the hosted site? Clone the project and run it yourself; 
 
 From then on, import each new entry and click Analyze again; only the new days are processed. To look around first, click 加载示例体验 (Load sample) on the welcome screen.
 
-## How it works
+## 🧠 How it works
 
 ### Overview
 
@@ -220,7 +220,7 @@ Grouped by calendar week (Monday to Sunday). The input is that week's entries, t
 - **Project JSON**: a full backup that can be restored in another browser or on another machine.
 - **Offline HTML**: on startup, before touching the DOM, the app keeps a copy of its own original HTML. On export, the project data is injected into that copy as `window.__DIARYLENS_EMBED__`, producing a self-contained file. When that file is opened, the app sees the embedded data and switches to **read-only mode**: import, analysis and settings are hidden, and nothing is written to IndexedDB.
 
-## Models & privacy
+## 🔒 Models & privacy
 
 - The browser calls `{Base URL}/chat/completions` on the endpoint you configure **directly, with no intermediate server**.
 - By default the API key is stored in this browser's localStorage. Untick "remember key" to keep it in sessionStorage instead, so it is cleared when the page closes.
@@ -230,7 +230,7 @@ Grouped by calendar week (Monday to Sunday). The input is that week's entries, t
 
 **Usage**: one call to propose categories; one call per day for analysis (usually 2k–6k tokens); one call per weekly review. The review dialog shows the running token total for the session.
 
-## Diary format
+## 📝 Diary format
 
 Plain text works. Here's an example with all optional metadata:
 
@@ -246,7 +246,7 @@ Gym: back + biceps
 #hashtag
 ```
 
-## Data model
+## 📦 Data model
 
 ```jsonc
 {
@@ -262,7 +262,7 @@ Gym: back + biceps
 }
 ```
 
-## Project layout
+## 📂 Project layout
 
 ```
 src/
@@ -281,7 +281,7 @@ src/
 ```
 
 
-## Run it locally
+## 💻 Run it locally
 
 If you'd rather not use the hosted site, clone the project and run it on your own machine. It works exactly like the online version, and every request still goes straight from your browser to the model provider you configure.
 
@@ -324,7 +324,7 @@ To preview the build on a local server, run `npm run preview` (http://localhost:
 - **Offline**: the page itself opens offline; analyzing entries and generating weekly reviews need access to your model endpoint (except in demo mode).
 - **Deploy your own copy**: fork the repo, set Settings → Pages → Source to GitHub Actions, and every push to `main` deploys to your own GitHub Pages. Alternatively, put `dist/index.html` on any static host.
 
-## Roadmap
+## 📌 Roadmap
 
 - [ ] Full rebuild: re-analyze every entry under the current categories
 - [ ] Manually merge, split and edit tasks
