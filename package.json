@@ -1,0 +1,17 @@
+{
+  "name": "diarylens",
+  "private": true,
+  "version": "0.1.0",
+  "description": "上传日记，用你自己的大模型 API 提取任务与状态，生成可视化时间轴",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.4.6",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.npm-cache/
+# 本地测试用的私人日记，不入库
+local-samples/
+*.local
