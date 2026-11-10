@@ -9,6 +9,22 @@
   <a href="README.md">中文</a> · <b>English</b> · <a href="https://zaughtercoding.github.io/DiaryLens/">Live demo</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/zaughterCoding/DiaryLens/actions/workflows/pages.yml"><img src="https://github.com/zaughterCoding/DiaryLens/actions/workflows/pages.yml/badge.svg" alt="Deploy"></a>
+  <a href="https://zaughtercoding.github.io/DiaryLens/"><img src="https://img.shields.io/badge/live%20demo-online-2a78d6" alt="Live demo"></a>
+  <a href="https://github.com/zaughterCoding/DiaryLens/stargazers"><img src="https://img.shields.io/github/stars/zaughterCoding/DiaryLens?style=flat&logo=github" alt="Stars"></a>
+  <a href="https://github.com/zaughterCoding/DiaryLens/commits/main"><img src="https://img.shields.io/github/last-commit/zaughterCoding/DiaryLens?style=flat" alt="Last commit"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white" alt="Vite">
+  <img src="https://img.shields.io/badge/Node.js-%E2%89%A518-5FA04E?logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/LLM-DeepSeek%20%7C%20OpenAI%20compatible-4D6BFE" alt="LLM">
+  <img src="https://img.shields.io/badge/backend-none-1baf7a" alt="No backend">
+  <img src="https://img.shields.io/badge/single%20file-~110KB-eb6834?logo=html5&logoColor=white" alt="Single HTML">
+</p>
+
 ---
 
 Import your diary entries, plug in **your own LLM API key** (DeepSeek by default, any OpenAI-compatible endpoint works), and DiaryLens extracts — day by day — which tasks you pushed forward, which stage each one is in, which habits you kept, and how you felt. It then renders an interactive timeline, stats, a heatmap calendar, a mood curve and weekly reviews.
@@ -22,6 +38,7 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 ## Contents
 
 - [Features](#features)
+- [Tech stack](#tech-stack)
 - [Quick start](#quick-start)
 - [How it works](#how-it-works)
 - [Models & privacy](#models--privacy)
@@ -46,6 +63,19 @@ No more pasting diaries into ChatGPT / Claude and chatting back and forth, and n
 | 📝 Weekly review | Summary, achievements and things to watch, per calendar week |
 | 💾 Local storage & export | Autosaved in the browser; JSON backup; offline read-only HTML snapshot for sharing |
 | 🧪 Demo mode | Try the UI without an API key, using keyword rules in place of a model |
+
+## Tech stack
+
+| Layer | Choice | Notes |
+|---|---|---|
+| Language | TypeScript 5 (strict) | All source code, no UI framework |
+| Build | Vite 6 + vite-plugin-singlefile | Bundles into one self-contained HTML file |
+| Visualization | Hand-written SVG + CSS | Timeline, stacked bars, heatmap and line chart without a chart library |
+| Storage | IndexedDB / localStorage | Project data in IndexedDB, model settings in localStorage |
+| Model | OpenAI-compatible Chat Completions | Called straight from the browser; DeepSeek by default, JSON mode supported |
+| Deployment | GitHub Actions + GitHub Pages | Every push to `main` builds and publishes |
+
+**Zero runtime dependencies**: the bundle contains only this project's own code, with no third-party runtime libraries.
 
 ## Quick start
 
@@ -250,7 +280,6 @@ src/
   assets/        icon
 ```
 
-Built with TypeScript and Vite. No UI framework and no chart library; every chart is hand-written SVG.
 
 ## Run it locally
 

@@ -9,6 +9,22 @@
   <b>中文</b> · <a href="README.en.md">English</a> · <a href="https://zaughtercoding.github.io/DiaryLens/">在线体验</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/zaughterCoding/DiaryLens/actions/workflows/pages.yml"><img src="https://github.com/zaughterCoding/DiaryLens/actions/workflows/pages.yml/badge.svg" alt="Deploy"></a>
+  <a href="https://zaughtercoding.github.io/DiaryLens/"><img src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-%E5%B7%B2%E4%B8%8A%E7%BA%BF-2a78d6" alt="Live demo"></a>
+  <a href="https://github.com/zaughterCoding/DiaryLens/stargazers"><img src="https://img.shields.io/github/stars/zaughterCoding/DiaryLens?style=flat&logo=github" alt="Stars"></a>
+  <a href="https://github.com/zaughterCoding/DiaryLens/commits/main"><img src="https://img.shields.io/github/last-commit/zaughterCoding/DiaryLens?style=flat" alt="Last commit"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white" alt="Vite">
+  <img src="https://img.shields.io/badge/Node.js-%E2%89%A518-5FA04E?logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/%E6%A8%A1%E5%9E%8B-DeepSeek%20%7C%20OpenAI%20%E5%85%BC%E5%AE%B9-4D6BFE" alt="LLM">
+  <img src="https://img.shields.io/badge/%E5%90%8E%E7%AB%AF-%E6%97%A0%E9%9C%80-1baf7a" alt="No backend">
+  <img src="https://img.shields.io/badge/%E5%8D%95%E6%96%87%E4%BB%B6-%E7%BA%A6%20110KB-eb6834?logo=html5&logoColor=white" alt="Single HTML">
+</p>
+
 ---
 
 导入日记正文，填上**你自己的大模型 API Key**（默认 DeepSeek，任何 OpenAI 兼容接口都可以），DiaryLens 会逐天提取你推进了哪些任务、处在什么阶段、坚持了哪些习惯、状态如何，再生成可交互的时间轴、统计图、热力日历、状态曲线和周报。
@@ -20,6 +36,7 @@
 ## 目录
 
 - [功能一览](#功能一览)
+- [技术栈](#技术栈)
 - [快速开始](#快速开始)
 - [功能详解与实现原理](#功能详解与实现原理)
 - [模型与隐私](#模型与隐私)
@@ -44,6 +61,19 @@
 | 📝 周报 | 按自然周生成总结、本周完成和需要注意的地方 |
 | 💾 本地存储与导出 | 浏览器自动保存；导出 JSON 备份；导出离线 HTML 只读快照用于分享 |
 | 🧪 演示模式 | 不需要 API Key，用关键词规则模拟分析，先体验界面 |
+
+## 技术栈
+
+| 层面 | 选型 | 说明 |
+|---|---|---|
+| 语言 | TypeScript 5（strict） | 全部源码，没有使用 UI 框架 |
+| 构建 | Vite 6 + vite-plugin-singlefile | 打包成单个自包含 HTML |
+| 可视化 | 手写 SVG + CSS | 时间轴、堆叠柱状图、热力日历、折线图都没有引入图表库 |
+| 存储 | IndexedDB / localStorage | 项目数据存在 IndexedDB，模型设置存在 localStorage |
+| 模型 | OpenAI 兼容 Chat Completions | 浏览器直接调用，默认 DeepSeek，支持 JSON 输出模式 |
+| 部署 | GitHub Actions + GitHub Pages | 推送到 `main` 自动打包发布 |
+
+运行时**零依赖**：打包产物里只有自己写的代码，没有任何第三方运行时库。
 
 ## 快速开始
 
@@ -250,7 +280,6 @@ src/
   assets/        图标
 ```
 
-技术栈：TypeScript + Vite，没有使用 UI 框架和图表库，图表都是手写 SVG。
 
 ## 本地运行
 
